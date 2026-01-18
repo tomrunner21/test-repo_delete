@@ -1,0 +1,13 @@
+flowchart LR
+  Host[Your laptop]
+  subgraph VirtualBox Host-Only + NAT
+    LDAP[VM1: ldap.example.com
+    192.168.56.10
+    389/636]
+    CLIENT[VM2: client.example.com
+    192.168.56.11
+    SSSD+authselect]
+  end
+  Host <-- host-only --> LDAP
+  Host <-- host-only --> CLIENT
+  LDAP <---> CLIENT
